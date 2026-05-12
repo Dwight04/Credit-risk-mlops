@@ -22,3 +22,50 @@ credit-risk-mlops/
 │       └── ci_cd.yml            # GitHub Actions CI/CD pipeline
 ├── dvc.yaml                     # DVC pipeline versioning
 └── requirements.txt
+## MLOps Components
+
+| Component | Tool |
+|---|---|
+| Experiment Tracking | MLflow |
+| Model Registry | MLflow Model Registry |
+| Drift Detection | PSI (Population Stability Index) |
+| REST API | FastAPI |
+| CI/CD Pipeline | GitHub Actions |
+| Data Versioning | Kaggle API + DVC |
+
+## Model Performance
+| Metric | Logistic Regression | XGBoost |
+|---|---|---|
+| AUC | — | — |
+| KS-Statistic | — | — |
+| Gini | — | — |
+
+*(Populated after training)*
+
+## Key Features
+- Automated PSI-based drift detection with retraining trigger
+- MLflow experiment tracking and model versioning
+- REST API for real-time scoring
+- GitHub Actions pipeline for continuous integration and deployment
+- Modular, reproducible pipeline following financial services model development standards
+
+## How to Run
+```bash
+# 1. Clone the repo
+git clone https://github.com/YOUR_USERNAME/credit-risk-mlops.git
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Download data
+python src/download_data.py
+
+# 4. Train model
+python src/train.py
+
+# 5. Run API
+uvicorn api.main:app --reload
+```
+
+## Author
+Monica | Senior Data Scientist | Credit & Fraud Risk Modeling
