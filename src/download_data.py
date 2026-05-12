@@ -5,6 +5,7 @@ from pathlib import Path
 
 RAW_DATA_DIR = Path("data/raw")
 
+
 def download_data():
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -15,7 +16,6 @@ def download_data():
 
     print("Downloading data from Kaggle...")
 
-    # Use curl with bearer token — works with new KGAT_ token format
     url = "https://www.kaggle.com/api/v1/competitions/data/download-all/GiveMeSomeCredit"
     output_path = RAW_DATA_DIR / "data.zip"
 
@@ -26,20 +26,30 @@ def download_data():
         url
     ], capture_output=True, text=True)
 
-    print(result.stdout)
-    print(result.stderr)
+    print("CURL stdout:", result.stdout)
+    print("CURL stderr:", result.stderr)
 
-    if not output_path.exists():
-        raise FileNotFoundError("Download failed — check token and competition rules acceptance")
+    # Print first 500 chars of downloaded file to diagnose
+    with open(output_path, "rb") as f:
+        content = f.read(500)
+    print("Downloaded content preview:", content)
 
-    print(f"Unzipping...")
+    # Check if it's actually a zip
+    if not zipfile.is_zipfile(output_path):
+        raise ValueError(
+            f"Downloaded file is not a zip. "
+            f"Content: {content.decode('utf-8', errors='ignore')}"
+        )
+
+    print("Unzipping...")
     with zipfile.ZipFile(output_path, "r") as z:
         z.extractall(RAW_DATA_DIR)
     output_path.unlink()
 
-    print(f"Files available:")
+    print("Files available:")
     for f in RAW_DATA_DIR.iterdir():
         print(f"  {f.name}")
+
 
 if __name__ == "__main__":
     download_data()
