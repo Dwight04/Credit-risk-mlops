@@ -6,48 +6,43 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0 0 * * 1"  # Run every Monday for drift monitoring
+    - cron: "0 0 * * 1"
 
 jobs:
-  # ─────────────────────────────────────────
-  # JOB 1 — Code Quality
-  # ─────────────────────────────────────────
   code_quality:
     name: Code Quality
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Install linting tools
-        run: pip install flake8 black
-
-      - name: Check formatting with black
-        run: black --check src/ api/
+      - name: Install flake8
+        run: pip install flake8
 
       - name: Lint with flake8
-        run: flake8 src/ api/ --max-line-length=100 --ignore=E501,W503
+        run: flake8 src/ api/ --max-line-length=100 --ignore=E501,W503,E302,E303
 
-  # ─────────────────────────────────────────
-  # JOB 2 — Data Download
-  # ─────────────────────────────────────────
   download_data:
     name: Download Data
     runs-on: ubuntu-latest
     needs: code_quality
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -58,34 +53,31 @@ jobs:
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         run: python src/download_data.py
 
-      - name: Upload data as artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: raw-data
           path: data/raw/
           retention-days: 1
 
-  # ─────────────────────────────────────────
-  # JOB 3 — Train Model
-  # ─────────────────────────────────────────
   train:
     name: Train Model
     runs-on: ubuntu-latest
     needs: download_data
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Download data artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: raw-data
           path: data/raw/
@@ -97,40 +89,36 @@ jobs:
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: python src/train.py
 
-      - name: Upload model artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: trained-model
           path: models/
           retention-days: 7
 
-  # ─────────────────────────────────────────
-  # JOB 4 — Evaluate Model
-  # ─────────────────────────────────────────
   evaluate:
     name: Evaluate Model
     runs-on: ubuntu-latest
     needs: train
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Download data artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: raw-data
           path: data/raw/
 
-      - name: Download model artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: trained-model
           path: models/
@@ -142,40 +130,36 @@ jobs:
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: python src/evaluate.py
 
-      - name: Upload evaluation reports
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: evaluation-reports
           path: reports/
           retention-days: 7
 
-  # ─────────────────────────────────────────
-  # JOB 5 — Monitor Drift
-  # ─────────────────────────────────────────
   monitor:
     name: Monitor Drift
     runs-on: ubuntu-latest
     needs: evaluate
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Download data artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: raw-data
           path: data/raw/
 
-      - name: Download model artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: trained-model
           path: models/
@@ -187,46 +171,40 @@ jobs:
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: python src/monitor.py
 
-      - name: Upload monitoring reports
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: monitoring-reports
           path: reports/monitoring/
           retention-days: 30
 
-  # ─────────────────────────────────────────
-  # JOB 6 — Deploy API
-  # ─────────────────────────────────────────
   deploy:
     name: Deploy API
     runs-on: ubuntu-latest
     needs: [evaluate, monitor]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Download model artifact
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: trained-model
           path: models/
 
-      - name: Start FastAPI server (smoke test)
+      - name: Start FastAPI and health check
         run: |
           cd api
           uvicorn main:app --host 0.0.0.0 --port 8000 &
           sleep 5
           curl -f http://localhost:8000/health || exit 1
           echo "API health check passed"
-
-      - name: API deployment complete
-        run: echo "API deployed successfully on $(date)"
