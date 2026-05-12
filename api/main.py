@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 import uvicorn
 
 # Paths
-MODEL_DIR = Path("models")
+MODEL_DIR = Path(__file__).parent.parent / "models"
 
 # Initialize FastAPI app
 app = FastAPI(
