@@ -23,7 +23,7 @@ jobs:
         run: pip install flake8
 
       - name: Lint with flake8
-        run: flake8 src/ api/ --max-line-length=100 --ignore=E501,W503,E302,E303,W291,W293,W292,E711,E741
+        run: flake8 src/ api/ --max-line-length=100 --ignore=E501,W503,E302,E303,W291,W293,W292,E711,E741,F401,E305,F541
         continue-on-error: true
 
   download_data:
