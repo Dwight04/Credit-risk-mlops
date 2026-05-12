@@ -178,10 +178,13 @@ jobs:
           name: trained-model
           path: models/
 
+      - name: List models directory
+        run: ls -la models/
+
       - name: Start FastAPI and health check
         run: |
           cd api
           uvicorn main:app --host 0.0.0.0 --port 8000 &
-          sleep 5
+          sleep 8
           curl -f http://localhost:8000/health || exit 1
           echo "API health check passed"
