@@ -183,8 +183,7 @@ jobs:
 
       - name: Start FastAPI and health check
         run: |
-          cd api
-          uvicorn main:app --host 0.0.0.0 --port 8000 &
+          uvicorn api.main:app --host 0.0.0.0 --port 8000 &
           sleep 8
           curl -f http://localhost:8000/health || exit 1
           echo "API health check passed"
