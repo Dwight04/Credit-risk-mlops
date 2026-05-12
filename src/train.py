@@ -140,6 +140,14 @@ def train():
 
         # Save model locally
         joblib.dump(model, MODEL_DIR / "model.joblib")
+
+        # Save baseline scores and metrics for monitoring
+        baseline_scores = model.predict_proba(X_train)[:, 1]
+        np.save(MODEL_DIR / "baseline_scores.npy", baseline_scores)
+        import json
+        with open(MODEL_DIR / "baseline_metrics.json", "w") as f:
+            json.dump({"auc": auc}, f)
+        print("Baseline scores and metrics saved for monitoring")
         print(f"\nModel saved to {MODEL_DIR / 'model.joblib'}")
         print(f"MLflow Run ID: {run.info.run_id}")
 
