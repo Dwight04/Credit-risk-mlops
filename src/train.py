@@ -43,8 +43,8 @@ def load_data():
 
 def preprocess(df):
     # Fill missing values
-    df["MonthlyIncome"].fillna(df["MonthlyIncome"].median(), inplace=True)
-    df["NumberOfDependents"].fillna(0, inplace=True)
+    df["MonthlyIncome"] = df["MonthlyIncome"].fillna(df["MonthlyIncome"].median())
+    df["NumberOfDependents"] = df["NumberOfDependents"].fillna(0)
 
     # Cap outliers
     df["RevolvingUtilizationOfUnsecuredLines"] = df[
