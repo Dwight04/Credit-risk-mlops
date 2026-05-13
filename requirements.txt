@@ -12,6 +12,7 @@ scorecardpy==0.1.9.2
 
 # Experiment Tracking
 mlflow==2.12.1
+dagshub==0.3.36 #(optional, for local use)
 
 # Monitoring
 evidently==0.4.30
