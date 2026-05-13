@@ -6,6 +6,8 @@ import joblib
 from sklearn.metrics import roc_auc_score, roc_curve
 import matplotlib.pyplot as plt
 
+mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
+
 # Paths
 MODEL_DIR = Path("models")
 REPORTS_DIR = Path("reports")
