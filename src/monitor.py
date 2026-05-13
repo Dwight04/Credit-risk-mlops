@@ -7,6 +7,9 @@ import json
 from datetime import datetime
 from evaluate import compute_psi
 
+mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
+mlflow.set_experiment("credit-risk-scoring")
+
 # Paths
 MODEL_DIR = Path("models")
 DATA_DIR = Path("data")
