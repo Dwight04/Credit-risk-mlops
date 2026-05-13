@@ -12,6 +12,8 @@ from sklearn.preprocessing import LabelEncoder
 import joblib
 import yaml
 
+mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
+
 # Paths
 RAW_DATA_DIR = Path("data/raw")
 MODEL_DIR = Path("models")
