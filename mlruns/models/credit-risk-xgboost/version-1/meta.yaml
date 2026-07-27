@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1785119691713
+current_stage: None
+description: ''
+last_updated_timestamp: 1785119691713
+name: credit-risk-xgboost
+run_id: 5d0ea4389b304ceea7efd6f91d8a534c
+run_link: ''
+source: mlflow-artifacts:/457092101124281577/5d0ea4389b304ceea7efd6f91d8a534c/artifacts/model
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/457092101124281577/5d0ea4389b304ceea7efd6f91d8a534c/artifacts/model
+user_id: null
+version: 1

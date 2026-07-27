@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-07-27T02:38:06.073033",
+  "psi": 0.0002,
+  "psi_status": "GREEN",
+  "psi_message": "No significant change \u2014 model stable",
+  "baseline_auc": 0.8683,
+  "current_auc": 0.8784,
+  "auc_drop": -0.0101,
+  "retraining_triggered": false,
+  "trigger_event": null
+}

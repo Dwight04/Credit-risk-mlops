@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/457092101124281577
+creation_time: 1785119683662
+experiment_id: '457092101124281577'
+last_update_time: 1785119683662
+lifecycle_stage: active
+name: credit-risk-scoring

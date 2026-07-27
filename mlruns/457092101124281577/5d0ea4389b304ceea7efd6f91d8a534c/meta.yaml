@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/457092101124281577/5d0ea4389b304ceea7efd6f91d8a534c/artifacts
+end_time: 1785119691817
+entry_point_name: ''
+experiment_id: '457092101124281577'
+lifecycle_stage: active
+run_id: 5d0ea4389b304ceea7efd6f91d8a534c
+run_name: xgboost-baseline
+run_uuid: 5d0ea4389b304ceea7efd6f91d8a534c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1785119683757
+status: 3
+tags: []
+user_id: codespace
