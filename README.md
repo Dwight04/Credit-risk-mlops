@@ -1,9 +1,21 @@
+# Summary - 
+
+An MLOps learning project built around credit risk scoring — predicting the probability that a borrower will default within 2 years (using the classic "Give Me Some Credit" Kaggle dataset).
+
+The focus here is MLOps tooling and workflow, not model development. The credit risk model itself is intentionally simple; it exists to give the pipeline something real to train, serve, monitor, and retrain. This project explores:
+- Automated experiment tracking and model registry with MLflow
+- Production-style model serving via FastAPI
+- Statistical drift detection (PSI) and automated retraining triggers
+- Credit-scoring-specific validation practices (KS-statistic, Gini, rank-ordering/decile tables) — loosely inspired by conventions used in regulated financial services settings
+
+⚠️ Disclaimer: This is a personal learning project, not a production system. It has not been validated for regulatory, fair-lending, or real-world lending use.
+
 # Credit Risk MLOps Pipeline
 
 An end-to-end machine learning pipeline for credit risk scoring, built with production MLOps practices including experiment tracking, model versioning, drift monitoring, automated retraining, and REST API deployment.
 
 ## Business Context
-Credit risk models require rigorous development, monitoring, and governance to remain accurate over time. This project explores MLOps concepts through a credit scoring use case, focusing on deployment over training — loosely modeled on practices used in regulated financial services settings.
+ This project explores MLOps concepts through a credit scoring use case, focusing on deployment over training — loosely modeled on practices used in regulated financial services settings.
 
 ## Dataset
 [Give Me Some Credit](https://www.kaggle.com/c/GiveMeSomeCredit) — Kaggle competition dataset for predicting probability of financial distress within two years.
