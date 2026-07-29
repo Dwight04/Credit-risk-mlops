@@ -3,7 +3,7 @@
 An end-to-end machine learning pipeline for credit risk scoring, built with production MLOps practices including experiment tracking, model versioning, drift monitoring, automated retraining, and REST API deployment.
 
 ## Business Context
-Credit risk models require rigorous development, monitoring, and governance to remain accurate over time. This project simulates a production-grade credit scoring pipeline — from model training to deployment — applying the same practices used in regulated financial services environments.
+Credit risk models require rigorous development, monitoring, and governance to remain accurate over time. This project explores MLOps concepts through a credit scoring use case, focusing on deployment over training — loosely modeled on practices used in regulated financial services settings.
 
 ## Dataset
 [Give Me Some Credit](https://www.kaggle.com/c/GiveMeSomeCredit) — Kaggle competition dataset for predicting probability of financial distress within two years.
