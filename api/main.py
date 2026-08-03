@@ -14,7 +14,7 @@ MODEL_DIR = Path(__file__).parent.parent / "models"
 # Initialize FastAPI app
 app = FastAPI(
     title="Credit Risk Scoring API",
-    description="Real-time credit risk scoring using XGBoost model trained on Give Me Some Credit dataset",
+    description="Real-time Credit risk scoring using XGBoost model trained on Give Me Some Credit dataset",
     version="1.0.0"
 )
 
