@@ -100,7 +100,7 @@ class CreditRiskOutput(BaseModel):
 
 def compute_risk_score(probability):
     """
-    Convert probability of default to credit score (300-850)
+    Convert probability of default to credit score (300 - 850)
     Higher score = lower risk — mirrors industry standard scoring
     """
     score = int(850 - (probability * 550))
