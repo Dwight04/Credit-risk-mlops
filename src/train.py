@@ -40,7 +40,7 @@ PARAMS = {
 
 def load_data():
     df = pd.read_csv(RAW_DATA_DIR / "cs-training.csv", index_col=0)
-    print(f"Data loaded: {df.shape[0]} rows, {df.shape[1]} columns")
+    print(f" Data loaded: {df.shape[0]} rows, {df.shape[1]} columns")
     return df
 
 def preprocess(df):
