@@ -37,7 +37,7 @@ def load_baseline_scores():
     if not baseline_path.exists():
         raise FileNotFoundError(
             f"Baseline scores not found at {baseline_path}. "
-            "Run train.py first to generate baseline scores."
+            "Run train.py first to generate baseline scores"
         )
     return np.load(baseline_path)
 
