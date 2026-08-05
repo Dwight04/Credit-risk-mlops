@@ -11,7 +11,7 @@ import uvicorn
 # Paths
 MODEL_DIR = Path(__file__).parent.parent / "models"
 
-# Initialize FastAPI app
+# Initialize FastAPI application
 app = FastAPI(
     title="Credit Risk Scoring API",
     description="Real-time credit risk scoring using XGBoost model trained on Give Me Some Credit dataset",
