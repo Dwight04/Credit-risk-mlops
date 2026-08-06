@@ -20,7 +20,7 @@ def compute_ks(y_true, y_pred):
     df["cum_bad"] = (df["y_true"] == 1).cumsum() / (df["y_true"] == 1).sum()
     df["cum_good"] = (df["y_true"] == 0).cumsum() / (df["y_true"] == 0).sum()
     ks = (df["cum_bad"] - df["cum_good"]).abs().max()
-    return round(ks, 4)
+    return round(ks, 4) 
 
 def compute_psi(expected, actual, bins=10):
     """
