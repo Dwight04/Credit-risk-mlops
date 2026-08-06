@@ -126,7 +126,8 @@ def evaluate(X_test, y_test, log_to_mlflow=True):
     rank_table.to_csv(REPORTS_DIR / "rank_ordering.csv", index=False)
     print(f"\nRank ordering saved to {REPORTS_DIR / 'rank_ordering.csv'}")
 
-    # Log to MLflow
+    # Log to MLflow - This block conditionally logs evaluation results to MLflow, controlled by the log_to_mlflow 
+    #flag (useful so evaluate.py can run standalone without polluting tracking, or be toggled off in tests).
     if log_to_mlflow:
         with mlflow.start_run(run_name="evaluation", nested=True):
             mlflow.log_metric("auc", auc)
