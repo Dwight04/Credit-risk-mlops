@@ -23,7 +23,7 @@ MODEL_DIR.mkdir(parents=True, exist_ok=True)
 EXPERIMENT_NAME = "credit-risk-scoring"
 MODEL_NAME = "credit-risk-xgboost"
 
-# XGBoost parameters
+# XGBoost parameters 
 PARAMS = {
     "objective": "binary:logistic",
     "eval_metric": "auc",
