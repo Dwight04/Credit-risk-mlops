@@ -21,7 +21,7 @@ MONITOR_DIR.mkdir(parents=True, exist_ok=True)
 # PSI Thresholds — standard credit risk monitoring rules
 PSI_THRESHOLDS = {
     "green": 0.1,   # No action needed
-    "amber": 0.2,   # Monitor closely
+    "amber": 0.2,   # Needs to be Monitored closely
     "red": 0.2      # Trigger retraining
 }
 
