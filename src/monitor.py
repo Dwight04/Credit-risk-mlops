@@ -162,7 +162,7 @@ def monitor(X_current, y_current):
 
     elif retrain_needed:
         trigger_event = trigger_retraining(
-            reason=f"AUC degradation exceeded threshold: drop={auc_drop} > {AUC_DEGRADATION_THRESHOLD}"
+            reason=f"AUC degradation exceeds threshold: drop={auc_drop} > {AUC_DEGRADATION_THRESHOLD}"
         )
         retraining_triggered = True
 
