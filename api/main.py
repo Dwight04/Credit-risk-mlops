@@ -44,7 +44,7 @@ class CreditRiskInput(BaseModel):
     )
     NumberOfTime30_59DaysPastDueNotWorse: int = Field(
         ..., ge=0,
-        description="Number of times 30-59 days past due in last 2 years",
+        description="Number of times 30 to 59 days past due in last 2 years",
         alias="NumberOfTime30-59DaysPastDueNotWorse"
     )
     DebtRatio: float = Field(
